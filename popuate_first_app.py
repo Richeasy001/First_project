@@ -20,3 +20,25 @@ def add_topics():
 def populate(N=5):
 
     for entry in range(N):
+
+        # get the topic or entry
+        top = add_topics()
+
+        # create the fake data for that entry
+        fake_url = fakegen.url()
+        fake_date = fakegen.date()
+        fake_name = fakegen.company()
+
+        # creat the new webpage entry
+        webpg = Webpage.objects.get_or_create(topic=top, url=fake_url, name= fake_name)[0]
+
+        # create a fake access record for webpage
+        acc_rec = AccessRecord.objects.get_or_create(name=webpg,date=fake_date)[0]
+
+
+if __name__ == '__main__':
+    print("populating script")
+    populate(20)
+    print("population complete!")
+
+
